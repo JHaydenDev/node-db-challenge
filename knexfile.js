@@ -1,8 +1,9 @@
 module.exports = {
   development: {
     client: "sqlite3",
+    useNullAsDefault: true,
     connection: {
-      filename: "./data/project-book.db3"
+      filename: "./data/project-sprint.db3"
     },
     migrations: {
       directory: "./data/migrations"
@@ -11,10 +12,9 @@ module.exports = {
       directory: "./data/seeds"
     },
     pool: {
-      afterCreate: (conn, done) => {
-        conn.run("PRAGMA foreign_keys = ON", done); // turn on FK enforcement
+      afterCreate: (connection, done) => {
+        connection.run("PRAGMA foreign_keys = ON", done);
       }
-    },
-    useNullAsDefault: true
+    }
   }
 };
